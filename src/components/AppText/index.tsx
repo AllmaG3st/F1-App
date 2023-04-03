@@ -1,10 +1,10 @@
-import {Text, TextProps} from 'react-native';
 import React, {PropsWithChildren} from 'react';
+import {Text, TextProps} from 'react-native';
 
+import {ColorEnum} from '@theme/colors';
 import {FontSizeEnum} from '@theme/fonts';
 
 import styles from './styles';
-import {ColorEnum} from '@theme/colors';
 
 interface Props extends TextProps {
   bold?: boolean;

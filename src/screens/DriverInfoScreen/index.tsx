@@ -1,8 +1,8 @@
 import React from 'react';
-import {Linking, TouchableOpacity, View} from 'react-native';
+import {Linking, View} from 'react-native';
 
-import {useNavigation, useRoute} from '@react-navigation/native';
 import {useAppSelector} from '@utils/reduxHelper';
+import {useNavigation, useRoute} from '@react-navigation/native';
 
 import {AppText, AppError} from '@components';
 
@@ -16,7 +16,7 @@ import {selectDriverById} from '@store/features/selectors';
 import styles from './styles';
 
 const DriverInfoScreen: React.FC = () => {
-  const {goBack} =
+  const {goBack, navigate} =
     useNavigation<MainStackNavigationGenericProp<'DriverInfo'>>();
   const {
     params: {driverId},
@@ -28,6 +28,12 @@ const DriverInfoScreen: React.FC = () => {
     if (!driverInfo) return;
 
     await Linking.openURL(driverInfo.url);
+  };
+
+  const onRacesPress = () => {
+    if (!driverInfo) return;
+
+    navigate('DriverRaces', {driverId: driverInfo.driverId});
   };
 
   if (!driverInfo) return <AppError retry={goBack} retryText="Go Back" />;
@@ -54,14 +60,25 @@ const DriverInfoScreen: React.FC = () => {
           DOB: <AppText fontSize="Large">{driverInfo.dateOfBirth}</AppText>{' '}
         </AppText>
 
-        <TouchableOpacity onPress={onBiographyPress}>
-          <AppText fontSize="Large" bold style={styles.infoText}>
-            Information:{' '}
-            <AppText fontSize="Large" color={ColorEnum.Blue}>
-              Biography Link
-            </AppText>{' '}
-          </AppText>
-        </TouchableOpacity>
+        <AppText fontSize="Large" bold style={styles.infoText}>
+          Information:{' '}
+          <AppText
+            fontSize="Large"
+            color={ColorEnum.Blue}
+            onPress={onBiographyPress}>
+            Biography Link
+          </AppText>{' '}
+        </AppText>
+
+        <AppText fontSize="Large" bold style={styles.infoText}>
+          Races:{' '}
+          <AppText
+            fontSize="Large"
+            color={ColorEnum.Blue}
+            onPress={onRacesPress}>
+            Driver Races
+          </AppText>{' '}
+        </AppText>
       </View>
     </View>
   );

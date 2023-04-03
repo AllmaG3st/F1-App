@@ -1,5 +1,7 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {Driver, DriversState} from './types';
+
+import {Driver} from '../api/types';
+import {DriversState} from './types';
 
 const initialState: DriversState = {
   drivers: [],

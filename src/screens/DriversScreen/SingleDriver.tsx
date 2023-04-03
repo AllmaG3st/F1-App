@@ -3,7 +3,7 @@ import React from 'react';
 
 import {useNavigation} from '@react-navigation/native';
 
-import AppText from '@components/AppText';
+import {AppText} from '@components';
 
 import {ColorEnum} from '@theme/colors';
 import {Driver} from '@store/features/api/types';

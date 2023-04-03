@@ -1,18 +1,12 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {
-  FlatList,
-  ListRenderItemInfo,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {FlatList, ListRenderItemInfo, View} from 'react-native';
 
 import SingleDriver from './SingleDriver';
-import {AppLoader, AppError, AppText} from '@components';
+import {AppLoader, AppError, PageControls} from '@components';
 
-import {ColorEnum} from '@theme/colors';
 import {Driver} from '@store/features/api/types';
-import {getErrorMessage} from '@utils/getErrorMessage';
 import {useAppDispatch} from '@utils/reduxHelper';
+import {getErrorMessage} from '@utils/getErrorMessage';
 import {useGetDriversQuery} from '@store/features/api/apiSlice';
 import {addDrivers} from '@store/features/drivers/driversSlice';
 
@@ -22,6 +16,9 @@ const fetchLimit = 20;
 
 const DriversScreen: React.FC = () => {
   const [driversOffset, setDriversOffset] = useState(0);
+
+  const maxOffset = useRef(0);
+  const flatListRef = useRef<FlatList>(null);
 
   const dispatch = useAppDispatch();
 
@@ -34,9 +31,6 @@ const DriversScreen: React.FC = () => {
     limit: fetchLimit,
     offset: driversOffset,
   });
-
-  const maxOffset = useRef(0);
-  const flatListRef = useRef<FlatList>(null);
 
   useEffect(() => {
     // Dispatch only when new drivers are fetched
@@ -76,23 +70,13 @@ const DriversScreen: React.FC = () => {
         ItemSeparatorComponent={() => <View style={styles.separator} />}
       />
 
-      <View style={styles.buttonContainer}>
-        {driversOffset ? (
-          <TouchableOpacity onPress={onPrevPress}>
-            <AppText fontSize="LargePlus" color={ColorEnum.Gray}>
-              {`< Prev`}
-            </AppText>
-          </TouchableOpacity>
-        ) : null}
-
-        {driversOffset <= +fetchedDriversData.MRData.total - fetchLimit ? (
-          <TouchableOpacity onPress={onNextPress}>
-            <AppText fontSize="LargePlus" color={ColorEnum.Gray}>
-              {`Next >`}
-            </AppText>
-          </TouchableOpacity>
-        ) : null}
-      </View>
+      <PageControls
+        showPrev={!!driversOffset}
+        showNext={
+          driversOffset <= +fetchedDriversData.MRData.total - fetchLimit
+        }
+        {...{onPrevPress, onNextPress}}
+      />
     </View>
   );
 };

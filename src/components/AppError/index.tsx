@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity, View, ViewStyle} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 
 import AppText from '@components/AppText';
 

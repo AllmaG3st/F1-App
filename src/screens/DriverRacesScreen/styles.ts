@@ -11,12 +11,18 @@ export default StyleSheet.create({
     backgroundColor: ColorEnum.LightGray,
   },
 
-  // ========== Single Driver ==========
-  driverContainer: {
+  // ========== Single Race ==========
+  raceContainer: {
     padding: 10,
   },
-  personalInfoContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+  raceLocationContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  raceInfoContainer: {
+    marginTop: 20,
+  },
+  infoText: {
+    marginVertical: 5,
   },
 });
