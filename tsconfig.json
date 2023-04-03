@@ -1,0 +1,23 @@
+{
+  "extends": "@tsconfig/react-native/tsconfig.json",
+  "compilerOptions": {
+    /* Visit https://aka.ms/tsconfig.json to read more about this file */
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@components": ["src/components"],
+      "@navigation/*": ["src/navigation/*"],
+      "@navigation": ["src/navigation"],
+      "@screens/*": ["src/screens/*"],
+      "@screens": ["src/screens"],
+      "@store/*": ["src/store/*"],
+      "@store": ["src/store"],
+      "@utils/*": ["src/utils/*"],
+      "@utils": ["src/utils"],
+      "@theme/*": ["src/theme/*"],
+      "@theme": ["src/theme"]
+    },
+    /* Completeness */
+    "skipLibCheck": true /* Skip type checking all .d.ts files. */
+  }
+}
