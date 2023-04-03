@@ -24,7 +24,7 @@ const SingleDriver: React.FC<Props> = ({driver}) => {
   return (
     <TouchableOpacity onPress={onDriverPress} style={styles.driverContainer}>
       <View style={styles.personalInfoContainer}>
-        <AppText fontSize="Large">
+        <AppText fontSize="Large" bold>
           {driver.givenName} {driver.familyName}
         </AppText>
         <AppText fontSize="Large">{driver.dateOfBirth}</AppText>
