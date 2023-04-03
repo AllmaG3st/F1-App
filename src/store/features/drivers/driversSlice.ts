@@ -14,6 +14,9 @@ const driversSlice = createSlice({
     addDrivers: (state, action: PayloadAction<Driver[]>) => {
       state.drivers = [...state.drivers, ...action.payload];
     },
+    reset: state => {
+      state.drivers = [];
+    },
   },
 });
 
