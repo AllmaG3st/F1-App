@@ -4,6 +4,7 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 export type MainStackParamList = {
   Drivers: undefined;
   DriverInfo: {driverId: string};
+  DriverRaces: {driverId: string};
 };
 
 export type MainStackNavigationGenericProp<
